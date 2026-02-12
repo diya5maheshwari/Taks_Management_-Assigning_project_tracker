@@ -1,0 +1,91 @@
+.about-page {
+  min-height: 100vh;
+  background: #020617;
+  color: #ffffff;
+  padding-bottom: 60px;
+}
+
+/* Header */
+.about-header {
+  text-align: center;
+  padding: 80px 20px 40px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.about-header h1 {
+  font-size: 42px;
+  margin-bottom: 16px;
+}
+
+.about-header p {
+  font-size: 16px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* Content */
+.about-content {
+  max-width: 900px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Blocks */
+.about-block {
+  background: #0f172a;
+  padding: 28px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.about-block h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #38bdf8;
+}
+
+.about-block p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #cbd5e1;
+}
+
+/* Feature list */
+.about-block ul {
+  margin-top: 12px;
+  padding-left: 20px;
+}
+
+.about-block ul li {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #cbd5e1;
+}
+
+
+
+.about-block {
+  background: #0f172a;
+  padding: 28px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+
+  opacity: 0;
+  transform: translateY(12px);
+  animation: blockFade 0.6s ease-out forwards;
+}
+
+
+/* Stagger effect */
+.about-block:nth-child(1) { animation-delay: 0.25s; }
+.about-block:nth-child(2) { animation-delay: 0.4s; }
+.about-block:nth-child(3) { animation-delay: 0.55s; }
+
+@keyframes blockFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

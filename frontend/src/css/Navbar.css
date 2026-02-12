@@ -1,0 +1,90 @@
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar background */
+.navbar {
+  width: 100%;
+  background: linear-gradient(90deg, #182542, #050e35);
+  padding: 14px 0;
+}
+
+/* Center container */
+.nav-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-links a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* Logo style */
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+/* Nav links list */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+/* Text links */
+.nav-links li {
+  color: #cbd5e1;
+  font-size: 15px;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.nav-links li:hover {
+  color: #ffffff;
+}
+
+/* Buttons common */
+.nav-links button {
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+/* Login button (4th item) */
+.nav-links li:nth-child(4) button {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #38bdf8;
+}
+
+.nav-links li:nth-child(4) button:hover {
+  background: #38bdf8;
+  color: #020617;
+}
+
+/* Register button (5th item) */
+.nav-links li:nth-child(5) button {
+  background: #38bdf8;
+  color: #020617;
+}
+
+.nav-links li:nth-child(5) button:hover {
+  background: #0ea5e9;
+}
