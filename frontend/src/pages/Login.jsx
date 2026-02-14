@@ -1,8 +1,9 @@
-import  { useState } from "react";
+import { useState } from "react";
 import "../css/Login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import API from "../api/axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,12 +13,18 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", {
-        email: email,
-        password: password,
-      },
-      {withCredentials: true }
-    );
+      //   const response = await axios.post("http://localhost:5000/api/auth/login", {
+      //     email: email,
+      //     password: password,
+      //   },
+      //   {withCredentials: true }
+      // );
+
+      const response = await API.post("/api/auth/login", {
+        email,
+        password,
+      });
+
       console.log(response.data);
       alert(response.data.message);
       navigate("/dashboard");
