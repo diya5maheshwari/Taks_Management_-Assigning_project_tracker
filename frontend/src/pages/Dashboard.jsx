@@ -9,6 +9,7 @@ import axios from "axios";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const [tasks, setTasks] = useState([]);
 
@@ -21,7 +22,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/task/task", { withCredentials: true })
+      .get(`${API_URL}/api/task/task`, { withCredentials: true })
       .then((res) => {
         setTasks(res.data);
       })
@@ -30,7 +31,7 @@ const Dashboard = () => {
       });
 
     axios
-      .get("http://localhost:5000/api/auth/me", {
+      .get(`${API_URL}/api/auth/me`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -47,7 +48,7 @@ const Dashboard = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/api/task/task/${id}`, {
+      .delete(`${API_URL}/api/task/task/${id}`, {
         withCredentials: true,
       })
       .then(() => {
@@ -68,7 +69,7 @@ const Dashboard = () => {
   const handleUpdate = () => {
     axios
       .put(
-        `http://localhost:5000/api/task/task/${editingTask._id}`,
+        `${API_URL}/api/task/task/${editingTask._id}`,
         {
           title,
           description,

@@ -7,6 +7,7 @@ import axios from "axios";
 
 const AddTask = () => {
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -14,7 +15,7 @@ const AddTask = () => {
 
   const addTask = async() => {
     try{
-      await axios.post("http://localhost:5000/api/task/task",{
+      await axios.post(`${API_URL}/api/task/task`,{
         title,
         description,
         status
