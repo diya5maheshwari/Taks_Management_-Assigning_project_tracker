@@ -12,7 +12,7 @@ const app = express();
 
 // middleware
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://taks-management.vercel.app",
   credentials: true,
 }));
 app.use(express.json());
@@ -31,8 +31,10 @@ mongoose
   })
   .catch((err) => {
     console.log("Failed to connect to mongoDB", err);
+    process.exit(1);
   });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("Server running on port", PORT);
 });
