@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/Register.css";
 import { Link } from "react-router-dom";
-// import axios  from "axios";
+import axios  from "axios";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -11,17 +11,17 @@ const Register = () => {
   const handelRegister = async (e) => {
     e.preventDefault();
     try {
-      //  const response=await axios.post('http://localhost:5000/api/auth/register',{
-      //   name:name,
-      //   email:email,
-      //   password:password
-      //  });
+       const response=await axios.post('http://localhost:5000/api/auth/register',{
+        name:name,
+        email:email,
+        password:password
+       });
 
-      const response = await API.post("/api/auth/register", {
-        name,
-        email,
-        password,
-      });
+      // const response = await API.post("/api/auth/register", {
+      //   name,
+      //   email,
+      //   password,
+      // });
 
       console.log(response.data);
       alert(response.data.message);

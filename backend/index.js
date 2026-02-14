@@ -12,7 +12,10 @@ const app = express();
 
 // middleware
 app.use(cors({
-  origin: "https://taks-management.vercel.app",
+  origin: [
+    "http://localhost:5173",          // local frontend
+    "https://taks-management.vercel.app" // production frontend
+  ],
   credentials: true,
 }));
 app.use(express.json());
