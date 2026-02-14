@@ -25,6 +25,9 @@ app.use(cookieParser());
 // routes
 app.use('/api/auth',authroutes);
 app.use("/api/task",taskroutes);
+app.get("/health", (req, res) => {
+  res.json({ status: "Backend is healthy ✅" });
+});
 
 //db
 mongoose
