@@ -14,7 +14,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",          // local frontend
-    "https://taks-management.vercel.app" // production frontend
+    "https://task-management-assigning-project-t.vercel.app" // production frontend
   ],
   credentials: true,
 }));
