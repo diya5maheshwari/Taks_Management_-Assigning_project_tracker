@@ -2,8 +2,7 @@ import { useState } from "react";
 import "../css/Login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-import API from "../api/axios";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,10 +19,11 @@ const Login = () => {
       //   {withCredentials: true }
       // );
 
-      const response = await API.post("/api/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        { email, password },
+        { withCredentials: true },
+      );
 
       console.log(response.data);
       alert(response.data.message);

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "../css/Register.css";
 import { Link } from "react-router-dom";
-// import axios  from "axios";
-import API from "../api/axios";
-
+import axios from "axios";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -18,12 +16,11 @@ const Register = () => {
       //   email:email,
       //   password:password
       //  });
-
-      const response = await API.post("/api/auth/register", {
-        name,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
+        { name, email, password },
+        { withCredentials: true },
+      );
 
       console.log(response.data);
       alert(response.data.message);
