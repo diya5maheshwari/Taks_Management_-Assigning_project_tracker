@@ -14,7 +14,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",          // local frontend
-    "https://task-management-assigning-project-tracker-hs7n8riq0.vercel.app" // production frontend
+    "https://task-management-assigning-project-tracker-hs7n8riq0.vercel.app" 
   ],
   credentials: true,
 }));
