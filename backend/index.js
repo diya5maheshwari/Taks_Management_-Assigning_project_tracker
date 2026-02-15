@@ -12,12 +12,10 @@ const app = express();
 
 // middleware
 app.use(cors({
-  origin: [
-    "http://localhost:5173",          // local frontend
-    "https://task-management-assigning-project-tracker-hs7n8riq0.vercel.app" 
-  ],
+  origin: true,
   credentials: true,
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
