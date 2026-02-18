@@ -13,19 +13,20 @@ const AddTask = () => {
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("pending");
 
-  const addTask = async() => {
-    try{
-      await axios.post(`${API_URL}/api/task/task`,{
-        title,
-        description,
-        status
-      },
-      { withCredentials: true }
-    );
+  const addTask = async () => {
+    try {
+      await axios.post(
+        `${API_URL}/api/task/task`,
+        {
+          title,
+          description,
+          status,
+        },
+        { withCredentials: true },
+      );
       navigate("/dashboard");
-    }
-    catch(err){
-      console.log("Error adding task:",err);
+    } catch (err) {
+      console.log("Error adding task:", err);
     }
   };
 
@@ -33,7 +34,6 @@ const AddTask = () => {
     <div className="add-task-page">
       <div className="add-task-box">
         <h1>Add New Task</h1>
-
         <input
           type="text"
           placeholder="Task title"
@@ -56,14 +56,10 @@ const AddTask = () => {
         {/* <Link to="/dashboard">
           <button onClick={addTask}>Add Task</button>
         </Link> */}
-                  <button onClick={addTask}>Add Task</button>
-
+        <button onClick={addTask}>Add Task</button>
       </div>
     </div>
   );
 };
 
 export default AddTask;
-
-
-

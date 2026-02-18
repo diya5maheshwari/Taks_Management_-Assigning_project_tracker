@@ -2,7 +2,18 @@ import Task from "../models/Task.js";
 
 export const readtask = async (req, res) => {
   try {
-    const tasks = await Task.find({owner:req.user.userId});
+    const { status } = req.query;
+    const filter = { owner: req.user.userId };
+
+      if (status) {
+        filter.status = status.toLowerCase();
+      }
+ console.log("Filter being used:", filter);
+
+    const tasks = await Task.find(filter);
+    console.log("Tasks returned:", tasks);
+    console.log("Query status:", status);
+    console.log("Filter:", filter);
     res.status(200).json(tasks);
   } catch (err) {
     res.status(500).json({ message: "error fetching tasks", err });
@@ -49,14 +60,14 @@ export const deletetask = async (req, res) => {
     //find task
     const task = await Task.findById(req.params.id);
 
-      if (!task) {
+    if (!task) {
       return res.status(404).send({ message: "task not found" });
     }
     //autherization check
-     if (!task.owner.equals(req.user.userId)) {
+    if (!task.owner.equals(req.user.userId)) {
       return res.status(403).json({ message: "Access denied" });
     }
-    // delete after autherization 
+    // delete after autherization
     await Task.findByIdAndDelete(req.params.id);
 
     res.status(200).json({ message: "task deleted successfully" });
@@ -68,23 +79,20 @@ export const deletetask = async (req, res) => {
 export const updatetask = async (req, res) => {
   try {
     //fetch task
-   const task = await Task.findById(req.params.id);
+    const task = await Task.findById(req.params.id);
 
     if (!task) {
       return res.status(404).json({ message: "Task not found" });
     }
     //autherization check
-     if (!task.owner.equals(req.user.userId)) {
+    if (!task.owner.equals(req.user.userId)) {
       return res.status(403).json({ message: "Access denied" });
     }
-    //update after autherization 
+    //update after autherization
 
-    const updatedTask = await Task.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-
+    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
 
     res.status(200).json(updatedTask);
   } catch (err) {

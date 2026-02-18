@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use('/api/auth',authroutes);
 app.use("/api/task",taskroutes);
 app.get("/health", (req, res) => {
-  res.json({ status: "Backend is healthy ✅" });
+  res.json({ status: "Backend is healthy " });
 });
 
 //db

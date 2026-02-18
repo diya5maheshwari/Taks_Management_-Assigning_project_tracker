@@ -20,16 +20,20 @@ const Dashboard = () => {
 
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get(`${API_URL}/api/task/task`, { withCredentials: true })
-      .then((res) => {
-        setTasks(res.data);
-      })
-      .catch((err) => {
-        console.log("Error handling tasks data:", err);
-      });
+  //sort state
+  const [sortOption, setSortOption] = useState("");
 
+  useEffect(() => {
+    // axios
+    //   .get(`${API_URL}/api/task/task`, { withCredentials: true })
+    //   .then((res) => {
+    //     setTasks(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log("Error handling tasks data:", err);
+    //   });
+
+    //fetch logged in user (runs once)
     axios
       .get(`${API_URL}/api/auth/me`, {
         withCredentials: true,
@@ -41,6 +45,25 @@ const Dashboard = () => {
         console.log("User fetch error", err);
       });
   }, []);
+
+  //Fetch tasks (runs on mount + when sortOption changes)
+
+  useEffect(() => {
+    let url = `${API_URL}/api/task/task`;
+
+    if (sortOption) {
+      url += `?status=${sortOption}`;
+    }
+   
+
+    axios
+      .get(url, { withCredentials: true })
+      .then((res) => setTasks(res.data))
+      .catch((err) => console.log("Task fetch error", err));
+
+       console.log("Sort option:", sortOption);
+    console.log("URL:", url);
+  }, [sortOption]);
 
   const handleLogout = () => {
     navigate("/");
@@ -150,6 +173,18 @@ const Dashboard = () => {
         <Link to="/add-task">
           <button className="add-btn">+ Add Task</button>
         </Link>
+      </div>
+      <div className="sort">
+        <h3>Sort By:</h3>
+        <select
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+        >
+          <option value="">All</option>
+          <option value="done">Completed</option>
+          <option value="pending">Pending</option>
+          <option value="progress">In Progress</option>
+        </select>
       </div>
 
       <div className="task-list">
